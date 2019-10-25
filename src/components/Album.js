@@ -16,103 +16,25 @@ import Link from '@material-ui/core/Link';
 import SingIn from './SingIn';
 import {Icon} from "@material-ui/core";
 import Axios from "axios";
-
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Distribuidora de Arcor Villa Mercedes © 1991 - ' + (new Date().getFullYear())}
-      <br/>
-      <Link color="inherit" target= {'_blank'} href="https://www.instagram.com/salondeventasarcor.vm/">
-        <i className={'fab fa-instagram'} ></i> Instagram
-      </Link>
-      <br/>
-      <Link color="inherit" target= {'_blank'} href="https://www.facebook.com/arcorcenter.vm/">
-        <i className={'fab fa-facebook'} ></i> Facebook
-      </Link>    
-    </Typography>
-  );
-}// esta funcion deberia ir a un componente foot
-
-function Loggin(){
-  return (<SingIn/>);
-}
-
+import MyFooter from "./MyFooter";
+import * as Conf from "../cfg/config";
 
 
 
 
 class Album extends Component {
-  componentDidMount() {
-
-
-// Make a request for a user with a given ID
-    Axios.get('http://api.localdistri.com/api/products')
-        .then(function (response) {
-          // handle success
-          console.log(response);
-          let products = response.data.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        })
-        .finally(function () {
-          // always executed
-        });
-
-  }
-
   constructor(props){
-    super(props);
-    this.products = [
-        { id : 1,
-          name: 'product 1'
-        },{ id : 2,
-          name: 'product 2'
-        },{ id : 3,
-          name: 'product 3'}
-        ];
-
-    this.classes =makeStyles(theme => ({
-      icon: {
-        marginRight: theme.spacing(2),
-      },
-      heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6),
-      },
-      heroButtons: {
-        marginTop: theme.spacing(4),
-      },
-      cardGrid: {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
-      },
-      card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-      },
-      cardMedia: {
-        paddingTop: '56.25%', // 16:9
-      },
-      cardContent: {
-        flexGrow: 1,
-      },
-      footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6),
-      },
-    }));
+      super(props);
+      console.log(props.products);
   }
+
   render(){
     return (
         <React.Fragment>
           <CssBaseline />
           <AppBar position="relative">
             <Toolbar>
-              <CameraIcon className={this.classes.icon} />
+              <CameraIcon className={Conf.classes.icon} />
               <Typography variant="h6" color="inherit" noWrap>
                 Aca deberia poner algo
               </Typography>
@@ -120,7 +42,7 @@ class Album extends Component {
           </AppBar>
           <main>
             {/* Hero unit */}
-            <div className={this.classes.heroContent}>
+            <div className={Conf.classes.heroContent}>
               <Container maxWidth="sm">
                 <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                   Bienvenidos
@@ -129,10 +51,10 @@ class Album extends Component {
                   Distribuidora de Arcor
                   Villa Mercedes, San Luis.
                 </Typography>
-                <div className={this.classes.heroButtons}>
+                <div className={Conf.classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
                     <Grid item>
-                      <Button onClick="Loggin()" variant="contained" color="primary">
+                      <Button  variant="contained" color="primary">
                         Iniciar Session
                       </Button>
                     </Grid>
@@ -145,24 +67,25 @@ class Album extends Component {
                 </div>
               </Container>
             </div>
-            <Container className={this.classes.cardGrid} maxWidth="md">
+            <Container className={Conf.classes.cardGrid} maxWidth="md">
               {/* End hero unit */}
               <Grid container spacing={4}>
-                {this.products.map(product => (
+                {this.props.products.map(products => (
 
-                    <Grid item key={product} xs={12} sm={6} md={4}>
-                      <Card className={this.classes.card}>
+                    <Grid item key={products.id} xs={12} sm={6} md={4}>
+                      <Card className={Conf.classes.card}>
                         <CardMedia
-                            className={this.classes.cardMedia}
-                            image={'http://api.localdistri.com/files/products/'+ product.id +'/default.jpg'}
+                            component="img"
+                            className={Conf.classes.cardMedia}
+                            image={'http://api.localdistri.com/files/products/'+ products.id +'/default.jpg'}
                             title="Image title"
                         />
-                        <CardContent className={this.classes.cardContent}>
+                        <CardContent className={Conf.classes.cardContent}>
                           <Typography gutterBottom variant="h5" component="h2">
-                            ProductName
+                            {products.name}
                           </Typography>
                           <Typography>
-                            DescriptionProductName
+                            {products.title}
                           </Typography>
                         </CardContent>
                         <CardActions>
@@ -179,18 +102,7 @@ class Album extends Component {
               </Grid>
             </Container>
           </main>
-          {/* Footer */}
-          <footer className={this.classes.footer}>
-            <Typography variant="h6" align="center" gutterBottom>
-              Redes Sociales
-            </Typography>
-
-            <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-              Visitanos en nuestras redes:
-            </Typography>
-            <Copyright />
-          </footer>
-          {/* End footer */}
+            <MyFooter/>
         </React.Fragment>
     );
   }
