@@ -2,7 +2,7 @@ import Typography from "@material-ui/core/Typography";
 import React, {Component} from "react";
 import * as Conf from "../cfg/config";
 import Link from "@material-ui/core/Link";
-import PropTypes from 'prop-types';
+
 
 class MyFooter extends Component {
     render() {
