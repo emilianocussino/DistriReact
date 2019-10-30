@@ -77,7 +77,7 @@ class Album extends Component {
                         <CardMedia
                             component="img"
                             className={Conf.classes.cardMedia}
-                            image={'http://api.localdistri.com/files/products/'+ products.id +'/default.jpg'}
+                            image={'http://api.localdistri.com/files/products/'+ products.id +'/default.jpg'} // aca deberia cambiar la forma de traer la imagen
                             title="Image title"
                         />
                         <CardContent className={Conf.classes.cardContent}>

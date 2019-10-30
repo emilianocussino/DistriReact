@@ -14,7 +14,7 @@ class App extends Component {
         Axios.get('http://api.localdistri.com/api/products')
             .then(function (response) {
                 // handle success
-                console.log(response);
+                console.log('Respuesta',response);
                 let products = response.data.data;
             })
             .catch(function (error) {
