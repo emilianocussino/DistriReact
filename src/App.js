@@ -11,8 +11,8 @@ class App extends Component {
     componentDidMount() {
 
 // Make a request for a user with a given ID
-        Axios.get('http://api.localdistri.com/api/products')
-            .then((response) =>{
+        Axios.get('http://api.localdistri.com/api/products?limit=10')
+            .then((response) => {
                 // handle success
                 console.log('Respuesta', response);
                 let products = response.data.data;
