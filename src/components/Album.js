@@ -27,7 +27,7 @@ class Album extends Component {
             <React.Fragment>
                 <CssBaseline/>
                 <AppBar position="relative">
-                    <Toolbar>
+                    <Toolbar color ="#2e6da4">
                         <CameraIcon className={Conf.classes.icon}/>
                         <Typography variant="h6" color="inherit" noWrap>
                             HELLO
@@ -58,7 +58,7 @@ class Album extends Component {
                                         <CardMedia
                                             component="img"
                                             className={Conf.classes.cardMedia}
-                                            image="https://geant.vteximg.com.br/arquivos/ids/232179-1000-1000/629985.jpg?v=636947536445100000" // aca deberia cambiar la forma de traer la imagen
+                                            image="https://geant.vteximg.com.br/arquivos/ids/232179-1000-1000/629985.jpg?v=636947536445100000 "  // ver metodo para traer imagenes
                                             title="Image title"
                                         />
                                         <CardContent className={Conf.classes.cardContent}>
@@ -70,13 +70,11 @@ class Album extends Component {
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-
-                                            <Link href= "http://localhost:4200/form" cl>
+                                            <Link href= "http://localhost:4200/" cl>
                                             Link
                                             </Link>
-
                                             <Button size="small" color="primary">
-                                                Consultar (aca deberiamos ir al formulario)
+                                                 Consultar
                                             </Button>
                                         </CardActions>
                                     </Card>
