@@ -11,7 +11,7 @@ class App extends Component {
         products: []
     };
 
-    /*  componentDidMount() {
+      componentDidMount() {
   // Make a request for a user with a given ID
           Axios.get('http://api.localdistri.com/api/products?limit=10')
               .then((response) => {
@@ -24,8 +24,8 @@ class App extends Component {
                   // handle error
                   console.log(error);
               });
-      }*/
-    render() {
+      };
+    render(){
         const {products} = this.state
         return (
             <Router>
@@ -33,15 +33,20 @@ class App extends Component {
                     <ul>
                         <li>
                             <Link to="/">Home</Link>
+                        </li>
+                        <li>
                             <Link to="/product/:id">Aboutproduct</Link>
+                        </li>
+                    </ul>
                             <Switch>
                                 <Route path="/" component={Album}/>
                                 <Route path="/product/:id" component={ProductDescription}/>
                             </Switch>
+                </div>
             </Router>
-    )
+    );
     }
-    }
+
     function Home() {
         return <h2>Home</h2>
     }
